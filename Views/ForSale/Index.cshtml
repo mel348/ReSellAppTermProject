@@ -1,10 +1,10 @@
-﻿@model IEnumerable<ReSell.Models.GarageSales>
+﻿@model IEnumerable<ReSellApp.Models.ForSale>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Garage Sales</h1>
+<h1>Items for Sale</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,10 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PostingTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
+                @Html.DisplayNameFor(model => model.SaleItem)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.City)
@@ -28,13 +25,13 @@
                 @Html.DisplayNameFor(model => model.Zipcode)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Time)
+                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Sellers)
@@ -46,10 +43,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.PostingTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
+                @Html.DisplayFor(modelItem => item.SaleItem)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.City)
@@ -61,13 +55,13 @@
                 @Html.DisplayFor(modelItem => item.Zipcode)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Time)
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Sellers.ID)
