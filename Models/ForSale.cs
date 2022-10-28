@@ -1,5 +1,6 @@
 ﻿using ReSell.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace ReSellApp.Models
 {
@@ -7,6 +8,7 @@ namespace ReSellApp.Models
     {
         public int ID { get; set; }
         [Required(ErrorMessage = "Please enter the item you have for sale!")]
+        [Display(Name = "Sale Item")]
         public string SaleItem { get; set; }
         [Required(ErrorMessage = "Please enter your city")]
         public string City { get; set; }
@@ -25,6 +27,7 @@ namespace ReSellApp.Models
         public string Email { get; set; }
         
         public int SellersID { get; set; }
+        [Display(Name = "Seller")]
         public Sellers Sellers { get; set; }
 
     }

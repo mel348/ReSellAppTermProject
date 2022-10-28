@@ -7,6 +7,7 @@ namespace ReSell.Models
     {
         public int ID { get; set; }
         [Required(ErrorMessage = "Please enter the item you have to trade!")]
+        [Display(Name = "Item for Trade")]
         public string TradeItem { get; set; }
         [Required(ErrorMessage = "Please enter your city")]
         public string City { get; set; }
@@ -18,6 +19,7 @@ namespace ReSell.Models
         public string Description { get; set; }
       
         public int SellersID { get; set; }
+        [Display(Name = "Seller")]
         public Sellers Sellers { get; set; }
 
     }

@@ -9,14 +9,14 @@ using ReSell.Models;
 namespace ReSellApp.Migrations
 {
     [DbContext(typeof(ReSellAppContext))]
-    [Migration("20221013234019_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20221027215711_everything")]
+    partial class everything
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.28")
+                .HasAnnotation("ProductVersion", "3.1.30")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -73,7 +73,7 @@ namespace ReSellApp.Migrations
                             City = "Traverse City",
                             Date = 0,
                             Description = "We have womens, mens, and childrens clothes.  Used Furniture, pet crate, lawn equipment, dvds, kitchenware, lamps, wall decor, and more knick knacks.",
-                            PostingTitle = "",
+                            PostingTitle = "Misc. Items",
                             SellersID = 1,
                             Time = -100,
                             Zipcode = 49684
@@ -115,6 +115,10 @@ namespace ReSellApp.Migrations
                         new
                         {
                             ID = 1
+                        },
+                        new
+                        {
+                            ID = 2
                         });
                 });
 
@@ -166,6 +170,63 @@ namespace ReSellApp.Migrations
                         });
                 });
 
+            modelBuilder.Entity("ReSellApp.Models.ForSale", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SaleItem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SellersID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(2)")
+                        .HasMaxLength(2);
+
+                    b.Property<int>("Zipcode")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("SellersID");
+
+                    b.ToTable("ForSale");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            City = "Malibu Point",
+                            Description = " ARC reactor miniaturized into a small electromagnet with an energy output of 8 gigajoules per second.",
+                            Email = "ironman@jarvis.com",
+                            Price = 36000000,
+                            SaleItem = "ARC reactor",
+                            SellersID = 2,
+                            State = "CA",
+                            Zipcode = 90265
+                        });
+                });
+
             modelBuilder.Entity("ReSell.Models.GarageSales", b =>
                 {
                     b.HasOne("ReSell.Models.Sellers", "Sellers")
@@ -176,6 +237,15 @@ namespace ReSellApp.Migrations
                 });
 
             modelBuilder.Entity("ReSell.Models.Trade", b =>
+                {
+                    b.HasOne("ReSell.Models.Sellers", "Sellers")
+                        .WithMany()
+                        .HasForeignKey("SellersID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ReSellApp.Models.ForSale", b =>
                 {
                     b.HasOne("ReSell.Models.Sellers", "Sellers")
                         .WithMany()

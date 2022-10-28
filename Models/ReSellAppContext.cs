@@ -35,7 +35,7 @@ namespace ReSell.Models
                     Description = "We have womens, mens, and childrens clothes.  Used Furniture, pet crate, lawn equipment, dvds, kitchenware, lamps, wall decor, and more knick knacks.",
                     SellersID = 1
                 }
-                ); ;
+                ); 
             modelBuilder.Entity<Trade>().HasData(
                 new Trade
                 {
